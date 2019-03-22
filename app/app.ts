@@ -1,13 +1,31 @@
-// lib/app.ts
-import express = require('express');
+import express from 'express';
+import bodyParser from 'body-parser';
 
-// Create a new express application instance
-const app: express.Application = express();
+export class App {
+  public app: express.Application;
+  public port: number;
 
-app.get('/', (req, res) => {
-  res.send('GET /');
-});
+  constructor(controllers: any[], port: number) {
+    this.app = express();
+    this.port = port;
 
-app.listen(3000,  () => {
-  console.log('Basic node + ts app listening on port 3000!');
-});
+    this.initializeMiddlewares();
+    this.initializeControllers(controllers);
+  }
+
+  private initializeMiddlewares() {
+    this.app.use(bodyParser.json())
+  }
+
+  private initializeControllers(controllers: any[]) {
+    controllers.forEach((controller) => {
+      this.app.use('/', controller.router)
+    });
+  }
+
+  public listen() {
+    this.app.listen(this.port, () => {
+      console.log(`Basic node + ts app listening on port ${this.port}`);
+    });
+  }
+}
