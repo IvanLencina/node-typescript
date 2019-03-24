@@ -7,6 +7,6 @@ const app: App = DIContainer.resolve<App>(App);
 const router: Router = DIContainer.resolve<Router>(Router);
 
 app.setPort(3000);
-router.init(app);
-
 app.listen();
+
+router.init(app);

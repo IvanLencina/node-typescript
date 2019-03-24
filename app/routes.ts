@@ -22,7 +22,8 @@ export class Router implements IRouter {
   }
 
   private initializeMiddlewares() {
-    this.appInstance.use(bodyParser.json())
+    this.appInstance.use(bodyParser.urlencoded({extended: true}));
+    this.appInstance.use(bodyParser.json());
   }
 
   private intializeRoutes() {
