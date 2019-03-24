@@ -2,8 +2,6 @@ import * as express from 'express';
 import {IExample} from "../interfaces/example.interface";
 
 export class ExampleController {
-  public path = '/examples';
-  public router = express.Router();
 
   private examples: IExample[] = [
     { name: 'This is one example.' },
@@ -11,18 +9,7 @@ export class ExampleController {
     { name: 'And one more example.'}
   ];
 
-  constructor() {
-    this.intializeRoutes();
-  }
-
-  public intializeRoutes() {
-    this.router.get('/', (request: express.Request, response: express.Response) => {
-      response.send('Welcome to the node + typescript example');
-    });
-
-    this.router.get(this.path, this.getAll.bind(this));
-    this.router.post(this.path, this.create.bind(this));
-  }
+  constructor() {}
 
   public getAll(request: express.Request, response: express.Response) {
     response.send(this.examples);
