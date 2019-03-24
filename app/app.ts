@@ -1,5 +1,4 @@
 import express from 'express';
-import bodyParser from 'body-parser';
 
 export class App {
   public app: express.Application;
@@ -8,12 +7,6 @@ export class App {
   constructor(port: number) {
     this.app = express();
     this.port = port;
-
-    this.initializeMiddlewares();
-  }
-
-  private initializeMiddlewares() {
-    this.app.use(bodyParser.json())
   }
 
   public listen() {

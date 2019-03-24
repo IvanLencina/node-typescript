@@ -1,5 +1,6 @@
 import * as express from 'express';
 import {ExampleController} from "./controllers/example.controller";
+import bodyParser from "body-parser";
 
 export class Router {
   public router = express.Router();
@@ -9,10 +10,16 @@ export class Router {
     private exampleController: ExampleController
   ) {
     this.app = app;
+
+    this.initializeMiddlewares();
     this.intializeRoutes();
   }
 
-  public intializeRoutes() {
+  private initializeMiddlewares() {
+    this.app.use(bodyParser.json())
+  }
+
+  private intializeRoutes() {
     this.app.route('/')
       .get((request: express.Request, response: express.Response) => {
         response.send('Welcome to the node + typescript example');
