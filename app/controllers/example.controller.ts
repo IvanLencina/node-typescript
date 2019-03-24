@@ -1,6 +1,8 @@
 import * as express from 'express';
 import {IExample} from "../interfaces/example.interface";
+import {injectable} from "inversify";
 
+@injectable()
 export class ExampleController {
 
   private examples: IExample[] = [
