@@ -1,11 +1,16 @@
 import express from 'express';
+import {injectable} from "inversify";
 
+@injectable()
 export class App {
   public app: express.Application;
-  public port: number;
+  public port: number | undefined;
 
-  constructor(port: number) {
+  constructor() {
     this.app = express();
+  }
+
+  public setPort(port: number) {
     this.port = port;
   }
 

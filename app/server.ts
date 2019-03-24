@@ -1,9 +1,12 @@
+import 'reflect-metadata';
 import {App} from './app';
-import {ExampleController} from "./controllers/example.controller";
 import {Router} from "./routes";
+import DIContainer from './di-container';
 
-const app = new App(3000);
+const app: App = DIContainer.resolve<App>(App);
+const router: Router = DIContainer.resolve<Router>(Router);
 
-new Router(app.getAppInstance(), new ExampleController());
+app.setPort(3000);
+router.init(app);
 
 app.listen();
