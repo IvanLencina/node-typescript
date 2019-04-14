@@ -1,6 +1,5 @@
 import express from 'express';
-import { injectable } from "inversify";
-import { createConnection } from "typeorm";
+import {injectable} from "inversify";
 
 @injectable()
 export class App {
@@ -9,9 +8,6 @@ export class App {
 
   constructor() {
     this.app = express();
-
-    createConnection().then(connection => {
-    }).catch(error => console.log(error));
   }
 
   public setPort(port: number) {
