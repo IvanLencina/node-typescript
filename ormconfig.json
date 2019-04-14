@@ -1,0 +1,19 @@
+{
+  "type": "mysql",
+  "host": "localhost",
+  "port": 3306,
+  "username": "kiwing",
+  "password": "secret",
+  "database": "nodets",
+  "synchronize": true,
+  "entities": [
+    "./app/persistance/entities/*.ts"
+  ],
+  "migrations": [
+    "./app/persistance/migrations/*.ts"
+  ],
+  "cli": {
+    "entitiesDir": "app/persistance/entities",
+    "migrationsDir": "app/persistance/migrations"
+  }
+}
