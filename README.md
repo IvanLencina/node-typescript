@@ -26,3 +26,20 @@ npm run tsc
 ```bash
 npm run prod
 ```
+
+## Persistance
+Integrated with TypeORM
+
+Config file: ormconfig.json
+
+Useful commands:
+
+Command list (Having package globally installed)
+```bash
+typeorm -h
+```
+
+Generate migration in project
+```bash
+./node_modules/.bin/ts-node ./node_modules/.bin/typeorm migration:generate -n initial
+```

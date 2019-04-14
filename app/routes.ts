@@ -43,7 +43,12 @@ export class Router implements IRouter {
       .post(this.exampleController.create.bind(this.exampleController));
 
     this.appInstance.route('/users')
+      .get(this.userController.getAll.bind(this.userController))
       .post(this.userController.register.bind(this.userController));
 
+    this.appInstance.route('/users/:id')
+      .get(this.userController.getOne.bind(this.userController))
+      .put(this.userController.update.bind(this.userController))
+      .delete(this.userController.remove.bind(this.userController));
   }
 }

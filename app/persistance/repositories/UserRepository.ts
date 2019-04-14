@@ -7,7 +7,6 @@ export class UserRepository {
 
     public findAll(): Promise<User[]> {
         return getManager().getRepository(User).createQueryBuilder('User')
-        .select(['User.*'])
         .getMany();
     }
 
@@ -20,7 +19,6 @@ export class UserRepository {
     }
 
     public save(user: User): Promise<User> {
-      console.log('llega')
         return getManager().getRepository(User).save(user);
     }
 
