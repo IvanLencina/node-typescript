@@ -8,52 +8,52 @@ import bcrypt from 'bcrypt';
 @Entity('users')
 export class User {
 
-    private ENCRIPTION_ROUNDS = 10;
+  private ENCRIPTION_ROUNDS = 10;
 
-    @PrimaryGeneratedColumn('uuid')
-    private id: string;
+  @PrimaryGeneratedColumn('uuid')
+  private id: string;
 
-    @Column(
-      {
-        type: 'varchar',
-        nullable: false,
-        length: 100,
-      }
-    )
-    private email: string;
-
-    @Column(
-      {
-        type: 'varchar',
-        nullable: false,
-        length: 100,
-      }
-    )
-    private password: string;
-
-    public getId(): string {
-        return this.id;
+  @Column(
+    {
+      type: 'varchar',
+      nullable: false,
+      length: 100,
     }
+  )
+  private email: string;
 
-    public setEmail(email: string): void {
-        this.email = email;
+  @Column(
+    {
+      type: 'varchar',
+      nullable: false,
+      length: 100,
     }
+  )
+  private password: string;
 
-    public getEmail(): string {
-        return this.email;
-    }
+  public getId(): string {
+    return this.id;
+  }
 
-    public setPassword(password: string): void {
-        this.password = bcrypt.hashSync(password, this.ENCRIPTION_ROUNDS);
-    }
+  public setEmail(email: string): void {
+    this.email = email;
+  }
 
-    public getPassword(): string {
-        return this.password;
-    }
+  public getEmail(): string {
+    return this.email;
+  }
 
-    public passwordMatches(password:string): boolean {
-      return this.getPassword() === bcrypt.hashSync(password, this.ENCRIPTION_ROUNDS);
-    }
+  public setPassword(password: string): void {
+    this.password = bcrypt.hashSync(password, this.ENCRIPTION_ROUNDS);
+  }
+
+  public getPassword(): string {
+    return this.password;
+  }
+
+  public passwordMatches(password:string): boolean {
+    return this.getPassword() === bcrypt.hashSync(password, this.ENCRIPTION_ROUNDS);
+  }
 };
 
 export default User;
