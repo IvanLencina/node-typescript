@@ -69,13 +69,14 @@ private userService: UserService;
       .send('User updated');
   };
 
-  public remove(request: express.Request, response: express.Response) {
+  async remove(request: express.Request, response: express.Response) {
     let id = request.params;
 
-    this.userService.delete(id);
+    let deleted = await this.userService.delete(id);
+    let message = deleted ? 'User deleted' : 'User not deleted'
 
     return response
       .status(HttpCodes.OK)
-      .send('User deleted');
+      .send(message);
   };
 }

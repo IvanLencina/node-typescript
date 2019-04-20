@@ -40,10 +40,8 @@ export class UserService {
   }
 
   async delete(id: string) {
-    let deleted = this.userRepository.delete(id).then(result => {
-        return result.affected && result.affected > 0;
-    });
+    let result = await this.userRepository.delete(id);
 
-    return deleted;
+    return result.affected && result.affected > 0;
   }
 }
