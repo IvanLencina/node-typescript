@@ -32,14 +32,6 @@ Integrated with TypeORM
 
 Config file: ormconfig.json
 
-Useful commands:
+Useful scripts:
 
-Command list (Having package globally installed)
-```bash
-typeorm -h
-```
-
-Generate migration in project
-```bash
-./node_modules/.bin/ts-node ./node_modules/.bin/typeorm migration:generate -n initial
-```
+npm run migrations:generate

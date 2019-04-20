@@ -31,7 +31,7 @@ export class UserService {
   };
 
   public update(id: string, data: any): void {
-    this.userRepository.findOneOrFail(id).then(user => {
+    this.findOneOrFail(id).then(user => {
       user.setEmail(data.email);
       user.setPassword(data.password);
 
@@ -39,9 +39,11 @@ export class UserService {
     });
   }
 
-  public delete(id: string) {
-    this.userRepository.delete(id). then(result => {
-
+  async delete(id: string) {
+    let deleted = this.userRepository.delete(id).then(result => {
+        return result.affected && result.affected > 0;
     });
+
+    return deleted;
   }
 }
