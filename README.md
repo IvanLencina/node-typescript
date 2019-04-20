@@ -26,3 +26,13 @@ npm run tsc
 ```bash
 npm run prod
 ```
+
+## Persistance
+Integrated with TypeORM
+
+Config file: ormconfig.json
+
+Useful scripts:
+
+npm run migrations:generate  -- Generates a new migration file if your schema differs agains database schema
+npm run migrations:run -- Runs all pending migrations

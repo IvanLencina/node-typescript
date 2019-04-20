@@ -1,5 +1,6 @@
 import * as express from 'express';
 import {ExampleController} from "./controllers/example.controller";
+import {UserController} from "./controllers/UserController";
 import bodyParser from "body-parser";
 import {App} from "./app";
 import {inject, injectable} from "inversify";
@@ -9,9 +10,14 @@ import {IRouter} from "./interfaces/router.interface";
 export class Router implements IRouter {
   private appInstance = express.application;
   private exampleController: ExampleController;
+  private userController: UserController;
 
-  constructor(@inject(ExampleController) exampleController: ExampleController) {
+  constructor(
+    @inject(ExampleController) exampleController: ExampleController,
+    @inject(UserController) userController: UserController
+  ) {
     this.exampleController = exampleController;
+    this.userController = userController;
   }
 
   public init(app: App) {
@@ -34,6 +40,15 @@ export class Router implements IRouter {
 
     this.appInstance.route('/examples')
       .get(this.exampleController.getAll.bind(this.exampleController))
-      .post(this.exampleController.create.bind(this.exampleController))
+      .post(this.exampleController.create.bind(this.exampleController));
+
+    this.appInstance.route('/users')
+      .get(this.userController.getAll.bind(this.userController))
+      .post(this.userController.register.bind(this.userController));
+
+    this.appInstance.route('/users/:id')
+      .get(this.userController.getOne.bind(this.userController))
+      .put(this.userController.update.bind(this.userController))
+      .delete(this.userController.remove.bind(this.userController));
   }
 }
