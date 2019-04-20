@@ -8,7 +8,8 @@
     "tsc": "tsc",
     "dev": "ts-node-dev --respawn --transpileOnly ./app/server.ts",
     "prod": "tsc && node ./build/server.js",
-    "migrations:generate": "./node_modules/.bin/ts-node ./node_modules/.bin/typeorm migration:generate -n migration"
+    "migrations:generate": "./node_modules/.bin/ts-node ./node_modules/.bin/typeorm migration:generate -n migration",
+    "migrations:run": "./node_modules/.bin/ts-node ./node_modules/.bin/typeorm migration:run"
   },
   "author": "Ivan Lencina",
   "license": "ISC",
